@@ -1,8 +1,8 @@
 /*
- * File:   clockmain.c
+ * File:   main.c
  * Author: garrett
  *
- * Created on December 2, 2021, 12:41 PM
+ * Created on January 30, 2022, 12:41 PM
  */
 
 
@@ -36,6 +36,7 @@
 }*/
 char min[59] = {};
 char tempTime;
+char str_TIME[];;
 int displayFlag=0;
 //int time=0;
 int j;
@@ -54,17 +55,17 @@ void wait(int k){
     displayFlag=1;
 }*/
 
-void fillChar(void){
+void fillStr(void){
     int minint;
     int minx;
     int arr=0;
     
-    for(minint=0;minint<6;minint++){
+    /*for(minint=0;minint<6;minint++){
         for(minx=0;minx<10;minx++){
             min[arr]=&minint+&minx;
             arr++;
         }
-    }
+    }*/
     
     
 }
@@ -93,25 +94,27 @@ int main(void)
             
         //}    
     int i=0;
+    int j=0;
+    
     while(1)
     {
         
         
-        for(i=60;i>0;i--){
-            wait(10);
-            lcd_setCursor(6,0);
-            lcd_printChar(min[i]);
-            //turns green led at RP15 on
-            PORTB= 0b00001111;
-            
-        }
+
         
-        for(i=60;i>0;i--){
+        for(i=25;i>0;i--){
             wait(10);
             lcd_setCursor(6,0);
             lcd_printChar(min[i]);
-            //turns red led at RP14 on
-            PORTB= 0b00001110;
+            for(j=59;j>0;j--){
+                wait(10);
+                lcd_setCursor(6,0);
+                lcd_printChar(min[j]);
+                //turns green led at RP15 on
+                PORTB= 0b00001111;
+            
+                }
+         
             
         }
         
