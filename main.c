@@ -99,7 +99,19 @@ int main(void)
         
         for(i=60;i>0;i--){
             wait(10);
+            lcd_setCursor(6,0);
             lcd_printChar(min[i]);
+            //turns green led at RP15 on
+            PORTB= 0b00001111;
+            
+        }
+        
+        for(i=60;i>0;i--){
+            wait(10);
+            lcd_setCursor(6,0);
+            lcd_printChar(min[i]);
+            //turns red led at RP14 on
+            PORTB= 0b00001110;
             
         }
         
