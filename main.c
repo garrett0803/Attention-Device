@@ -34,11 +34,12 @@
     putVal(ADC1BUF0);
     
 }*/
-char min[59] = {};
+//char min[59] = {};
 char tempTime;
 char str_TIME[];;
 int displayFlag=0;
-//int time=0;
+int secArr[60];
+int hourArr[25];
 int j;
 
 void wait(int k){
@@ -54,20 +55,26 @@ void wait(int k){
     _T3IF = 0; TMR3 = 0;
     displayFlag=1;
 }*/
+// func to fill arr with seconds for clock display
+void fillSec(void){
+    int sC;
+    int z=1;
+    for(sC=0;sc<60;sC++){
+        secArr[sC]=z;
+        z++;
+    }
+    
+   
+    
+    
+}
 
-void fillStr(void){
-    int minint;
-    int minx;
-    int arr=0;
-    
-    /*for(minint=0;minint<6;minint++){
-        for(minx=0;minx<10;minx++){
-            min[arr]=&minint+&minx;
-            arr++;
-        }
-    }*/
-    
-    
+void fillHour(void){
+    int hC;
+    int v=1;
+    for(hC=0;hC<26;hC++){
+        
+    }
 }
 
 int main(void)
@@ -105,17 +112,36 @@ int main(void)
         for(i=25;i>0;i--){
             wait(10);
             lcd_setCursor(6,0);
-            lcd_printChar(min[i]);
+            sprintf(str_TIME[i], "%6.4f :");
+         
             for(j=59;j>0;j--){
                 wait(10);
                 lcd_setCursor(6,0);
-                lcd_printChar(min[j]);
+                l
+                
+               
+                
+                //printing formatted string
+                lcd_printStr(str_TIME[i]+);
+                
+                
                 //turns green led at RP15 on
                 PORTB= 0b00001111;
             
                 }
          
             
+        }
+        
+        for(i=5;i>0;i--){
+            wait(10);
+            lcd_setCursor(6,0);
+            
+            for(j=59;i>0;--){
+                wait(10);
+                lcd_setCursor(6,0);
+                PORTB = 0b00001110;
+            }
         }
         
     
