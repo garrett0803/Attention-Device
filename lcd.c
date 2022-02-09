@@ -49,7 +49,7 @@ void lcd_setCursor(char x, char y) {
     lcd_cmd((1 << 7) + location);
 }
 
-void lcd_printSEC(int[] myInt){
+/*void lcd_printSEC(int[] myInt){
     I2C2CONbits.SEN=1;
     while(I2C2CONbits.SEN);
     IFS3bits.MI2CIF=0;
@@ -71,7 +71,7 @@ void lcd_printSEC(int[] myInt){
     
     I2C2CONbits.PEN=1;
     while(I2C2CONbits.PEN)
-}
+}*/
 
 void lcd_printChar(char myChar) {
     I2C2CONbits.SEN = 1;

@@ -34,12 +34,11 @@
     putVal(ADC1BUF0);
     
 }*/
-//char min[59] = {};
-char tempTime;
-char str_TIME[];;
+
+
 int displayFlag=0;
-int secArr[60];
-int hourArr[25];
+
+int hourArr[9]=[0,1,2,3,4,5,6,7,8,9];
 int j;
 
 void wait(int k){
@@ -48,34 +47,16 @@ void wait(int k){
         wait_1ms();
     }
 }
-//int i;
-//int count=0;
+
 
 /*void __attribute__((__interrupt__, __auto_psv__)) _T3Interrupt(void) {
     _T3IF = 0; TMR3 = 0;
     displayFlag=1;
 }*/
-// func to fill arr with seconds for clock display
-void fillSec(void){
-    int sC;
-    int z=1;
-    for(sC=0;sc<60;sC++){
-        secArr[sC]=z;
-        z++;
-    }
-    
-   
-    
-    
-}
 
-void fillHour(void){
-    int hC;
-    int v=1;
-    for(hC=0;hC<26;hC++){
-        
-    }
-}
+
+
+
 
 int main(void)
 {
@@ -102,47 +83,76 @@ int main(void)
         //}    
     int i=0;
     int j=0;
+    int z=0;
     
     while(1)
-    {
-        
-        
-
-        
-        for(i=25;i>0;i--){
-            wait(10);
+    { 
+        for(i=0;i<25;i++){
             lcd_setCursor(6,0);
-            sprintf(str_TIME[i], "%6.4f :");
+            if(i<10){
+                
+                lcd_printChar('0');
+                lcd_setCursor(7,0);
+                lcd_printChar(hourArr[i]);
+            }
+            else if(i>=10 && i<20){
+                lcd_printChar('1');
+                lcd_setCursor(7,0);
+                lcd_printChar(hourArr[i%10]);
+            }
+            else{
+                lcd_printChar('2');
+                lcd_setCursor(7,0);
+                lcd_printChar(hourArr[i%20]);
+            }
          
-            for(j=59;j>0;j--){
+            for(j=0; j<6 ; j++){
                 wait(10);
-                lcd_setCursor(6,0);
-                l
-                
+                lcd_setCursor(8,0);
+                lcd_printChar(':');
+                lcd_setCursor(9,0);
+                lcd_printChar(hourArr[j]);
+                lcd_setCursor(9,0);
                
-                
+                for(z=0;z<10;z++){
+                    lcd_printChar[z];
+                    
+                }
+                 
                 //printing formatted string
-                lcd_printStr(str_TIME[i]+);
-                
-                
-                //turns green led at RP15 on
+          
                 PORTB= 0b00001111;
             
                 }
          
             
         }
+        i=0;
         
-        for(i=5;i>0;i--){
-            wait(10);
+        for(i=0;i<5;i++){
             lcd_setCursor(6,0);
-            
-            for(j=59;i>0;--){
-                wait(10);
-                lcd_setCursor(6,0);
-                PORTB = 0b00001110;
+            if(i<10){
+                
+                lcd_printChar('0');
+                lcd_setCursor(7,0);
+                lcd_printChar(hourArr[i]);
             }
-        }
+         
+            
+         
+            for(j=0; j<6 ; j++){
+                wait(10);
+                lcd_setCursor(8,0);
+                lcd_printChar(':');
+                lcd_setCursor(9,0);
+                lcd_printChar(hourArr[j]);
+                lcd_setCursor(9,0);
+               
+                for(z=0;z<10;z++){
+                    lcd_printChar[z];
+                    
+                }
+            }        
         
     
        
@@ -175,12 +185,7 @@ int main(void)
         }
        
         
-          delay(10);
-          full_drive(6);
-          delay(10);
-          PORTB = 0b00000000;
-          delay(100000);
-          count++;
+      
     
         
         */
