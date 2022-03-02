@@ -38,12 +38,15 @@
 
 int displayFlag=0;
 
-int hourArr[9]=[0,1,2,3,4,5,6,7,8,9];
-int j;
+char hourArr[]= {'0','1','2','3','4','5','6','7','8','9'};
+int j=0;
+ int i=0;
+ int z=0;
+ int x=0;
 
 void wait(int k){
-    int x=0;
-    for(x=0;x<k;k++){
+    
+    for(x=0;x<k;x=x+1){
         wait_1ms();
     }
 }
@@ -82,40 +85,53 @@ int main(void)
             
         //}    
     int i=0;
-    int j=0;
+    
     int z=0;
     
     while(1)
     { 
-        for(i=0;i<25;i++){
-            lcd_setCursor(6,0);
+        for(i=0;i<25;i=i+1){
+            PORTB= 0b00001111;
+            wait(1000);
+            
+            
+            lcd_setCursor(2,0);
             if(i<10){
                 
                 lcd_printChar('0');
-                lcd_setCursor(7,0);
+                lcd_setCursor(3,0);
                 lcd_printChar(hourArr[i]);
             }
             else if(i>=10 && i<20){
                 lcd_printChar('1');
-                lcd_setCursor(7,0);
+                lcd_setCursor(3,0);
                 lcd_printChar(hourArr[i%10]);
             }
             else{
                 lcd_printChar('2');
-                lcd_setCursor(7,0);
+                lcd_setCursor(3,0);
                 lcd_printChar(hourArr[i%20]);
             }
          
-            for(j=0; j<6 ; j++){
-                wait(10);
-                lcd_setCursor(8,0);
-                lcd_printChar(':');
-                lcd_setCursor(9,0);
-                lcd_printChar(hourArr[j]);
-                lcd_setCursor(9,0);
+            for(j=0; j<6 ; j=j+1){
+                
                
-                for(z=0;z<10;z++){
-                    lcd_printChar[z];
+                
+                lcd_setCursor(4,0);
+                lcd_printChar(':');
+                lcd_setCursor(5,0);
+                lcd_printChar(hourArr[j]);
+                
+               
+                for(z=0;z<10;z=z+1){
+                    wait(1000);
+                    lcd_setCursor(6,0);
+                    lcd_printChar(hourArr[z]);
+                    if(z==9){
+                        wait(10);
+                        lcd_setCursor(6,0);
+                        lcd_printChar('0');
+                    }
                     
                 }
                  
@@ -128,31 +144,52 @@ int main(void)
             
         }
         i=0;
-        
-        for(i=0;i<5;i++){
-            lcd_setCursor(6,0);
+         for(i=0;i<5;i=i+1){
+             PORTB= 0b00001111;
+            wait(10);
+            
+            
+            lcd_setCursor(2,0);
             if(i<10){
                 
                 lcd_printChar('0');
-                lcd_setCursor(7,0);
+                lcd_setCursor(3,0);
                 lcd_printChar(hourArr[i]);
             }
+           
          
-            
-         
-            for(j=0; j<6 ; j++){
-                wait(10);
-                lcd_setCursor(8,0);
-                lcd_printChar(':');
-                lcd_setCursor(9,0);
-                lcd_printChar(hourArr[j]);
-                lcd_setCursor(9,0);
+            for(j=0; j<6 ; j=j+1){
+                
                
-                for(z=0;z<10;z++){
-                    lcd_printChar[z];
+                
+                lcd_setCursor(4,0);
+                lcd_printChar(':');
+                lcd_setCursor(5,0);
+                lcd_printChar(hourArr[j]);
+                
+               
+                for(z=0;z<10;z=z+1){
+                    wait(1000);
+                    lcd_setCursor(6,0);
+                    lcd_printChar(hourArr[z]);
+                    if(z==9){
+                        wait(1000);
+                        lcd_setCursor(6,0);
+                        lcd_printChar('0');
+                    }
                     
                 }
-            }        
+                 
+                //printing formatted string
+          
+                PORTB= 0b00001111;
+            
+                }
+         
+            
+        }
+        
+                
         
     
        
@@ -191,5 +228,6 @@ int main(void)
         */
     }
         
-        
+       
 }
+   
